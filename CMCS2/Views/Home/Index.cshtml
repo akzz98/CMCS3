@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="d-flex flex-column justify-content-center align-items-center vh-100">
+    <div class="text-center">
+        <h1 class="text-white">Welcome to the Contract Monthly Claim System (CMCS)</h1>
+        <h3 class="text-white">Select one of the options to start:</h3>
+
+        <div class="row">
+            <div class="col-md-4 d-flex justify-content-center">
+                <div class="card card-custom text-dark mb-3">
+                    <div class="card-body">
+                        <h4 class="card-title">Lecturer</h4>
+                        <p class="card-text">Submit and manage your claims.</p>
+                        <a href="@Url.Action("Index", "Lecturer")" class="btn btn-primary">Go to Lecturer</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coordinator card -->
+            <div class="col-md-4 d-flex justify-content-center">
+                <div class="card card-custom text-dark mb-3">
+                    <div class="card-body">
+                        <h4 class="card-title">Coordinator</h4>
+                        <p class="card-text">Oversee and verify claims from lecturers.</p>
+                        <a href="@Url.Action("Index", "Coordinator")" class="btn btn-primary">Go to Coordinator</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 d-flex justify-content-center">
+                <div class="card card-custom text-dark mb-3">
+                    <div class="card-body">
+                        <h4 class="card-title">Management</h4>
+                        <p class="card-text">Manage lecturers' claims and approvals.</p>
+                        <a href="@Url.Action("Index", "Organization")" class="btn btn-primary">Go to Organization</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card-custom {
+        background-color: #f8f9fa;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+        .card-custom:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+    .card-title, .card-text {
+        color: #343a40; 
+    }
+
+    .row {
+        margin-top: 20px;
+        justify-content: center;
+    }
+
+    .card {
+        margin: 10px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+</style>

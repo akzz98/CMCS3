@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Lecturer Dashboard";
+}
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="text-center">
+        <h1>Hi @ViewBag.UserName, </h1>
+        <h3>What would you like to do?</h3>
+
+        <div class="btn-group" role="group" aria-label="Lecturer actions">
+            <a href="@Url.Action("SubmitClaim", "Lecturer")" class="btn btn-success">Submit a Claim</a>
+            <a href="@Url.Action("TrackStatus", "Lecturer")" class="btn btn-info">Track a Claim</a>
+        </div>
+
+        
+        <div class="mt-4">
+            <a href="@Url.Action("Index", "Home")" class="btn btn-primary back-btn">Go Back</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn {
+        margin: 10px;
+        width: 200px;
+    }
+
+    .back-btn {
+        width: 410px;
+    }
+</style>

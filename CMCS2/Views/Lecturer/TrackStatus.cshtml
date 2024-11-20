@@ -1,0 +1,68 @@
+﻿@model IEnumerable<CMCS2.Models.Claim>
+@{
+    ViewBag.Title = "Track Claim";
+}
+
+<div class="d-flex flex-column justify-content-center align-items-center vh-100">
+    <h2>Track Claim Status</h2>
+
+    <div class="table-container">
+
+        @if (!Model.Any())
+        {
+            <div class="alert alert-warning" role="alert">
+                No claims submitted yet.
+            </div>
+        }
+        else
+        {
+
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Claim ID</th>
+                        <th>Date Submitted</th>
+                        <th>Supporting Document</th>
+                        <th>Status</th>
+                        <th>Rejection Reason</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var claim in Model)
+                    {
+                        <tr>
+                            <td>@claim.ClaimId</td>
+                            <td>@claim.DateSubmitted.ToShortDateString()</td>
+                            <td>                 
+                                @if (!string.IsNullOrEmpty(claim.DocumentPath))
+                                {
+                                    <a href="@Url.Content(claim.DocumentPath)" target="_blank">View Document</a>
+                                }
+                                else
+                                {
+                                    <span>No document uploaded</span>
+                                }
+                            </td>
+                            <td>@claim.Status</td>
+                            <td>@claim.RejectionReason</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+
+    <a href="@Url.Action("Index", "Lecturer")" class="btn btn-primary mt-4">Back</a>
+</div>
+
+<style>
+    .table-container {
+        margin-top: 20px;
+        max-width: 800px;
+        width: 100%;
+    }
+
+    .table {
+        width: 100%;
+    }
+</style>

@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Track Claims";
+}
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="text-center">
+        <h1>Track Your Claims</h1>
+        <h3>Select an option below:</h3>
+
+        <div class="btn-group" role="group" aria-label="Track claims actions">
+            <a href="@Url.Action("ViewApprovedClaims", "Organization")" class="btn btn-success">View Approved Claims</a>
+            <a href="@Url.Action("ViewVerifiedClaims", "Organization")" class="btn btn-info">View Verified Claims</a>
+            <a href="@Url.Action("ViewPendingClaims", "Organization")" class="btn btn-warning">View Pending Claims</a>
+            <a href="@Url.Action("ViewRejectedClaims", "Organization")" class="btn btn-danger">View Rejected Claims</a>
+        </div>
+
+        <div class="mt-4">
+            <a href="@Url.Action("Index", "Organization")" class="btn btn-primary back-btn">Back to Dashboard</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn {
+        margin: 10px;
+        width: 200px;
+    }
+
+    .back-btn {
+        width: 410px;
+    }
+</style>

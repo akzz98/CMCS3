@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Submit a Claim";
+}
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="form-container">
+        <h1 class="text-center">Submit a Claim</h1>
+
+        <form method="post" enctype="multipart/form-data" action="@Url.Action("SubmitClaim", "Lecturer")">
+            <div class="form-group">
+                <label for="hoursWorked">Hours Worked:</label>
+                <input type="number" class="form-control form-control-sm" id="hoursWorked" name="hoursWorked" placeholder="Enter hours worked" required />
+            </div>
+
+            <div class="form-group">
+                <label for="hourlyRate">Hourly Rate:</label>
+                <input type="number" class="form-control form-control-sm" id="hourlyRate" name="hourlyRate" placeholder="Enter hourly rate" required />
+            </div>
+
+            <div class="form-group">
+                <label for="notes">Notes:</label>
+                <textarea class="form-control form-control-sm" id="notes" name="notes" placeholder="Enter additional notes"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="file">Upload Supporting Document:</label>
+                <input type="file" class="form-control form-control-sm" id="file" name="file">
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-sm" id="form-btn">Submit Claim</button>
+        </form>
+        <a href="@Url.Action("Index", "Lecturer")" class="btn btn-secondary btn-sm">Back</a>
+    </div>
+</div>
+
+<style>
+    .form-container {
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 8px;
+        max-width: 800px;
+        width: 100%;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .btn {
+        margin-top: 20px;
+        width: 100%;
+    }
+</style>

@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Coordinator Dashboard";
+}
+
+<div class="d-flex flex-column justify-content-center align-items-center vh-100">
+    <div class="text-center">
+        <h1>Welcome @ViewBag.UserName,</h1>
+        <h3>What would you like to do?</h3>
+
+        <div class="btn-group" role="group" aria-label="Organisation actions">
+            <a href="@Url.Action("ViewUnapprovedClaims", "Coordinator")" class="btn btn-success">Unverified Claims</a>
+            <a href="@Url.Action("TrackClaims", "Coordinator")" class="btn btn-info">Track Claims</a>
+        </div>
+
+ 
+        <div class="mt-4">
+            <a href="@Url.Action("Index", "Home")" class="btn btn-primary back-btn">Back</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn-group {
+        margin-top: 20px;
+    }
+
+    .btn {
+        margin: 10px;
+        width: 250px;
+    }
+
+    .mt-4 {
+        margin-top: 20px;
+    }
+
+    .back-btn {
+        width: 510px;
+    }
+</style>
