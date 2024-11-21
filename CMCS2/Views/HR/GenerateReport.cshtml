@@ -1,0 +1,27 @@
+﻿@model IEnumerable<CMCS2.Models.Claim>
+
+@{
+    ViewBag.Title = "Generate Report";
+}
+
+<div class="d-flex flex-column justify-content-center align-items-center vh-100">
+    <h1>Generate Report</h1>
+
+    <form method="post" action="@Url.Action("GenerateReport", "HR")">
+        <button type="submit" class="btn btn-info">Generate Report</button>
+    </form>
+
+    <div id="reportViewer" style="width: 100%; height: 600px;">
+        @* The ReportViewer control will be rendered here *@
+    </div>
+</div>
+
+<style>
+    .table-container {
+        margin-top: 20px;
+        max-width: 1000px;
+        width: 100%;
+        max-height: 500px;
+        overflow-y: auto;
+    }
+</style>

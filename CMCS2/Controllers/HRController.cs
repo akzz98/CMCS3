@@ -3,8 +3,7 @@ using CMCS2.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.Reporting.WebForms;
 
 namespace CMCS2.Controllers
 {
@@ -41,11 +40,20 @@ namespace CMCS2.Controllers
             return View(approvedClaims);
         }
 
-        public IActionResult GenerateReport()
+        public ActionResult GenerateReport()
         {
-            // Logic to generate report using ssrs
-            // This could involve fetching data and passing it to a report generator
+            var reportViewer = new ReportViewer
+            {
+                ProcessingMode = ProcessingMode.Remote,
+            };
+
+            reportViewer.ServerReport.ReportServerUrl = new Uri("http://localhost/ReportServer");
+            reportViewer.ServerReport.ReportPath = "/YourReportFolder/YourReportName";
+
+            ViewBag.ReportViewer = reportViewer;
+
             return View();
         }
+
     }
 }
