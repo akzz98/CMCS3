@@ -20,13 +20,11 @@
                 <thead>
                     <tr>
                         <th>Claim ID</th>
-                        <th>Lecturer</th>
+                        <th>Lecturer Name</th>
                         <th>Hours Worked</th>
                         <th>Hourly Rate</th>
                         <th>Total Payment</th>
                         <th>Notes</th>
-                        <th>Supporting Document</th>
-                        <th>Processed By</th>
                         <th>Date Verified</th>
                         <th>Actions</th>
                     </tr>
@@ -41,21 +39,9 @@
                             <td>@claim.HourlyRate</td>
                             <td>R @claim.TotalPayment</td>
                             <td>@claim.Notes</td>
-                            <td>
-                                @if (!string.IsNullOrEmpty(claim.DocumentPath))
-                                {
-                                    <a href="@Url.Content(claim.DocumentPath)" target="_blank">View Document</a>
-                                }
-                                else
-                                {
-                                    <span>No document uploaded</span>
-                                }
-                            </td>
-                            <td>@claim.CoordinatorFullName</td>
                             <td>@claim.DateVerified</td>
                             <td>
-                                <a href="@Url.Action("FinalizeApproval", "Organization", new { claimId = claim.ClaimId })" class="btn btn-success">Approve</a>
-                                <a href="@Url.Action("RejectVerifiedClaim", "Organization", new { claimId = claim.ClaimId })" class="btn btn-danger">Reject</a>
+                                <a href="@Url.Action("ApproveClaim", "Organization", new { claimId = claim.ClaimId })" class="btn btn-success">Approve</a>
                             </td>
                         </tr>
                     }
@@ -68,7 +54,6 @@
 </div>
 
 <style>
-    style >
     .table-container {
         margin-top: 20px;
         max-width: 800px;

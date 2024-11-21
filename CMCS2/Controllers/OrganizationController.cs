@@ -1,5 +1,6 @@
 ﻿using CMCS2.Data;
 using CMCS2.Models;
+using CMCS3.Automation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,12 +12,15 @@ namespace CMCS2.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ApprovalValidator _approvalValidator;
 
         public OrganizationController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _userManager = userManager;
+            _approvalValidator = new ApprovalValidator();
         }
+
 
         public async Task<IActionResult> Index()
         {
@@ -53,33 +57,35 @@ namespace CMCS2.Controllers
             return View(approvedClaims);
         }
 
-        // Manager finalizes approval (moves status to 'Approved')
-        public async Task<IActionResult> FinalizeApproval(int claimId)
+        // Auto Approve the claim
+        public async Task<IActionResult> ApproveClaim(int claimId)
         {
             var claim = _context.Claims.FirstOrDefault(c => c.ClaimId == claimId);
 
             if (claim != null && claim.Status == "Verified")
             {
+                var validationResult = _approvalValidator.Validate(claim);
+                if (!validationResult.IsValid)
+                {
+                    // Collect all validation error messages
+                    var rejectionReason = string.Join("; ", validationResult.Errors.Select(e => e.ErrorMessage));
+
+                    // Set the rejection reason in the claim
+                    claim.RejectionReason = rejectionReason;
+                    claim.Status = "Rejected";
+
+                    // Save the claim with the rejection reason
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction("ViewVerifiedClaims");
+                }
+
+                // Process the claim if valid
                 claim.Status = "Approved";
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToAction("ViewVerifiedClaims", "Organization");
-        }
-
-        // Manager rejects a verified claim (moves status to 'Rejected')
-        public async Task<IActionResult> RejectVerifiedClaim(int claimId, string rejectionReason)
-        {
-            var claim = _context.Claims.FirstOrDefault(c => c.ClaimId == claimId);
-
-            if (claim != null && claim.Status == "Verified")
-            {
-                claim.Status = "Rejected";
-                claim.RejectionReason = rejectionReason;
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToAction("ViewVerifiedClaims", "Organization");
+            return RedirectToAction("ViewVerifiedClaims");
         }
     }
 }

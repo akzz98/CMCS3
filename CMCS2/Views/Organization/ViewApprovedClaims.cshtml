@@ -26,10 +26,11 @@
                         <th>Hourly Rate</th>
                         <th>Total Payment</th>
                         <th>Notes</th>
-                        <th>Supporting Document</th>
-                        <th>Status</th>
+                        <th>Supporting Document</th>                    
                         <th>Date Verified</th>
                         <th>Verified By</th>
+                        <th>Status</th>
+                        <th>Approved By</th>
 
                     </tr>
                 </thead>
@@ -53,10 +54,11 @@
                                 {
                                     <span>No document uploaded</span>
                                 }
-                            </td>
-                            <td>@claim.Status</td>
+                            </td>                            
                             <td>@claim.DateVerified</td>
-                            <td>@claim.CoordinatorFullName</td>                          
+                            <td>@claim.CoordinatorFullName</td>
+                            <td>@claim.Status</td>
+                            <td>@claim.</td>
                         </tr>
                     }
                 </tbody>
