@@ -6,7 +6,7 @@
     <div class="form-container">
         <h1 class="text-center">Submit a Claim</h1>
 
-        <form method="post" enctype="multipart/form-data" action="@Url.Action("SubmitClaim", "Lecturer")">
+        <form id="claimForm" method="post" enctype="multipart/form-data" action="@Url.Action("SubmitClaim", "Lecturer")">
             <div class="form-group">
                 <label for="hoursWorked">Hours Worked:</label>
                 <input type="number" class="form-control form-control-sm" id="hoursWorked" name="hoursWorked" placeholder="Enter hours worked" required />
@@ -15,6 +15,11 @@
             <div class="form-group">
                 <label for="hourlyRate">Hourly Rate:</label>
                 <input type="number" class="form-control form-control-sm" id="hourlyRate" name="hourlyRate" placeholder="Enter hourly rate" required />
+            </div>
+
+            <div class="form-group">
+                <label for="totalPayment">Total Payment:</label>
+                <input type="text" class="form-control form-control-sm" id="totalPayment" name="totalPayment" readonly />
             </div>
 
             <div class="form-group">
@@ -51,3 +56,34 @@
         width: 100%;
     }
 </style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        function calculateTotalPayment() {
+            var hoursWorked = parseFloat($('#hoursWorked').val());
+            var hourlyRate = parseFloat($('#hourlyRate').val());
+            if (!isNaN(hoursWorked) && !isNaN(hourlyRate) && hoursWorked > 0 && hourlyRate > 0) {
+                var totalPayment = hoursWorked * hourlyRate;
+                $('#totalPayment').val(totalPayment.toFixed(2));
+            } else {
+                $('#totalPayment').val('');
+            }
+        }
+
+        $('#hoursWorked, #hourlyRate').on('input', calculateTotalPayment);
+
+        $('#claimForm').on('submit', function(event) {
+            var hoursWorked = parseFloat($('#hoursWorked').val());
+            var hourlyRate = parseFloat($('#hourlyRate').val());
+            if (isNaN(hoursWorked) || hoursWorked <= 0) {
+                alert('Please enter a valid number for hours worked.');
+                event.preventDefault();
+            }
+            if (isNaN(hourlyRate) || hourlyRate <= 0) {
+                alert('Please enter a valid number for hourly rate.');
+                event.preventDefault();
+            }
+        });
+    });
+</script>

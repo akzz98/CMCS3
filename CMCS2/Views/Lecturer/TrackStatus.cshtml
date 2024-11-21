@@ -23,6 +23,7 @@
                         <th>Claim ID</th>
                         <th>Date Submitted</th>
                         <th>Supporting Document</th>
+                        <th>Toatal Amount</th>
                         <th>Status</th>
                         <th>Rejection Reason</th>
                     </tr>
@@ -43,7 +44,8 @@
                                     <span>No document uploaded</span>
                                 }
                             </td>
-                            <td>@claim.Status</td>
+                            <td>R @claim.TotalPayment</td>
+                            <td>@claim.Status</td>                           
                             <td>@claim.RejectionReason</td>
                         </tr>
                     }

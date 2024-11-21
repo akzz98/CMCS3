@@ -23,8 +23,8 @@
                     <th>Lecturer</th>
                     <th>Hours Worked</th>
                     <th>Hourly Rate</th>
+                    <th>Total Amount</th>
                     <th>Notes</th>
-                    @* <th>Rejection Date</th> *@
                     <th>Supporting Document</th>
                     <th>Rejection Reason</th>
                 </tr>
@@ -37,8 +37,8 @@
                         <td>@claim.LecturerFullName</td>
                         <td>@claim.HoursWorked</td>
                         <td>@claim.HourlyRate</td>
+                        <td>R @claim.TotalPayment</td>
                         <td>@claim.Notes</td>
-                        @* <td>@claim.DateRejected</td> *@
                         <td>
                             @if (!string.IsNullOrEmpty(claim.DocumentPath))
                             {

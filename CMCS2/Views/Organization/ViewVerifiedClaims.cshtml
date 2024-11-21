@@ -23,6 +23,7 @@
                         <th>Lecturer</th>
                         <th>Hours Worked</th>
                         <th>Hourly Rate</th>
+                        <th>Total Payment</th>
                         <th>Notes</th>
                         <th>Supporting Document</th>
                         <th>Processed By</th>
@@ -38,6 +39,7 @@
                             <td>@claim.LecturerFullName</td>
                             <td>@claim.HoursWorked</td>
                             <td>@claim.HourlyRate</td>
+                            <td>R @claim.TotalPayment</td>
                             <td>@claim.Notes</td>
                             <td>
                                 @if (!string.IsNullOrEmpty(claim.DocumentPath))

@@ -44,7 +44,7 @@ namespace CMCS2.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SubmitClaim(double hoursWorked, double hourlyRate, string notes, IFormFile file)
+        public async Task<IActionResult> SubmitClaim(double hoursWorked, double hourlyRate,double totalPayment, string notes, IFormFile file)
         {
             // Check for hours worked and hourly rate
             if (hoursWorked <= 0)
@@ -60,14 +60,15 @@ namespace CMCS2.Controllers
             // Check if the model state is valid after the validation checks
             if (ModelState.IsValid)
             {
-                double totalPayment = hoursWorked * hourlyRate;
+                totalPayment = hoursWorked * hourlyRate;
+
                 var user = await _userManager.GetUserAsync(User);
 
                 var claim = new Claim
                 {
                     HoursWorked = hoursWorked,
                     HourlyRate = hourlyRate,
-                   // TotalPayment = totalPayment,
+                    TotalPayment = totalPayment,
                     Notes = notes,
                     Status = "Pending",
                     DateSubmitted = DateTime.Now,
