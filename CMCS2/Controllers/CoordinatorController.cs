@@ -1,5 +1,6 @@
 ﻿using CMCS2.Data;
 using CMCS2.Models;
+using CMCS3.Automation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,11 +12,13 @@ namespace CMCS2.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ClaimValidator _claimValidator;
 
         public CoordinatorController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _userManager = userManager;
+            _claimValidator = new ClaimValidator();
         }
 
         public async Task<IActionResult> Index()
@@ -55,33 +58,34 @@ namespace CMCS2.Controllers
             return View(rejectedClaims);
         }
 
-        // Coordinator approves a claim (moves status to 'Verified')
-        public async Task<IActionResult> ApproveClaim(int claimId)
+        //Auto Validate the claim
+        public async Task<IActionResult> VerifyClaim(int claimId)
         {
             var claim = _context.Claims.FirstOrDefault(c => c.ClaimId == claimId);
 
             if (claim != null && claim.Status == "Pending")
             {
-                var coordinator = await _userManager.GetUserAsync(User);
+                var validationResult = _claimValidator.Validate(claim);
+                if (!validationResult.IsValid)
+                {
+                    // Collect all validation error messages
+                    var rejectionReason = string.Join("; ", validationResult.Errors.Select(e => e.ErrorMessage));
 
+                    // Set the rejection reason in the claim
+                    claim.RejectionReason = rejectionReason;
+                    claim.Status = "Rejected";
+
+                    // Save the claim with the rejection reason
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction("ViewUnapprovedClaims", "Coordinator");
+                }
+
+                // Process the claim if valid
+                var coordinator = await _userManager.GetUserAsync(User);
                 claim.Status = "Verified";
                 claim.CoordinatorFullName = $"{coordinator.Name} {coordinator.Surname}";
                 claim.DateVerified = DateTime.Now;
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToAction("ViewUnapprovedClaims", "Coordinator");
-        }
-
-        // Coordinator rejects a claim (moves status to 'Rejected')
-        public async Task<IActionResult> RejectClaim(int claimId, string rejectionReason)
-        {
-            var claim = _context.Claims.FirstOrDefault(c => c.ClaimId == claimId);
-
-            if (claim != null && claim.Status == "Pending")
-            {
-                claim.Status = "Rejected";
-                claim.RejectionReason = rejectionReason;
                 await _context.SaveChangesAsync();
             }
 
