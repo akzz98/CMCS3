@@ -12,8 +12,8 @@ namespace CMCS3.Automation
                 .LessThanOrEqualTo(160).WithMessage("Hours worked cannot exceed 160.");
 
             RuleFor(claim => claim.HourlyRate)
-                .GreaterThanOrEqualTo(125).WithMessage("Hourly rate must be at least \\$125.")
-                .LessThanOrEqualTo(291).WithMessage("Hourly rate cannot exceed \\$291.");
+                .GreaterThanOrEqualTo(125).WithMessage("Hourly rate must be at least \\R125.")
+                .LessThanOrEqualTo(291).WithMessage("Hourly rate cannot exceed \\R291.");
 
             RuleFor(claim => claim)
                 .Must(claim => claim.HoursWorked * claim.HourlyRate <= 50000)

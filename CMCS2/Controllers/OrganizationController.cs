@@ -67,13 +67,14 @@ namespace CMCS2.Controllers
                 var validationResult = _approvalValidator.Validate(claim);
                 if (!validationResult.IsValid)
                 {
+                    
                     // Collect all validation error messages
                     var rejectionReason = string.Join("; ", validationResult.Errors.Select(e => e.ErrorMessage));
 
                     // Set the rejection reason in the claim
                     claim.RejectionReason = rejectionReason;
                     claim.Status = "Rejected";
-
+                   
                     // Save the claim with the rejection reason
                     await _context.SaveChangesAsync();
 
@@ -81,7 +82,10 @@ namespace CMCS2.Controllers
                 }
 
                 // Process the claim if valid
+                var manager = await _userManager.GetUserAsync(User);
                 claim.Status = "Approved";
+                claim.ManagerFullName = $"{manager.Name} {manager.Surname}";
+                claim.DateApproved = DateTime.Now;
                 await _context.SaveChangesAsync();
             }
 

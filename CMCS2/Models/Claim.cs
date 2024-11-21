@@ -16,5 +16,6 @@
         public string? CoordinatorFullName { get; set; }
         public string? ManagerFullName { get; set; }
         public DateTime DateVerified { get; set; }
+        public DateTime DateApproved { get; set; }
     }
 }
