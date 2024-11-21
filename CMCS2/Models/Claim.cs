@@ -5,6 +5,7 @@
         public int ClaimId { get; set; }
         public double HoursWorked { get; set; }
         public double HourlyRate { get; set; }
+        public double TotalPayment { get; set; }
         public string Notes { get; set; }
         public string DocumentPath { get; set; } 
         public string Status { get; set; } = "Pending";

@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace CMCS2.Migrations
+namespace CMCS3.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241018191931_addDbToPath")]
-    partial class addDbToPath
+    [Migration("20241121093054_initMigration")]
+    partial class initMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -100,18 +100,18 @@ namespace CMCS2.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "3e0d0c68-38ae-4f9c-9b66-605fa161f88e",
+                            Id = "635da86c-d2de-4e31-8e61-7317841f5c7f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d7849607-ef40-41cd-bb28-9c0c9d8c0b4c",
+                            ConcurrencyStamp = "cee69810-01bd-4d0b-abad-c99c65f92ec4",
                             Email = "admin@yourapp.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Name = "Admin",
                             NormalizedEmail = "ADMIN@YOURAPP.COM",
                             NormalizedUserName = "ADMIN@YOURAPP.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAIQR+eWZTgi+A73CXIreP1AZlbfOvF61gvdypM8TdEiKFZfwacwk2EEsdP9h1Y1YA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENOGdPWF9CSzotymdP+chzvqDdmrita0yj03pBmOWcBn74ipSLJh1oMi/CLfDLO7qw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8b1a671b-5b95-455a-85b4-862a70fdb218",
+                            SecurityStamp = "de8e8470-1e87-45ab-9ef1-9839a63df9d6",
                             Surname = "User",
                             TwoFactorEnabled = false,
                             UserName = "admin@yourapp.com"
@@ -198,25 +198,25 @@ namespace CMCS2.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "04afeb14-5db3-40a2-88ce-b714d836e1fa",
+                            Id = "27b52031-2e93-4f18-a2d5-a5bd1575131b",
                             Name = "Lecturer",
                             NormalizedName = "LECTURER"
                         },
                         new
                         {
-                            Id = "2681de76-c7b3-4674-b1b0-23db0c971838",
+                            Id = "07d9d6e7-ecd7-4b50-91c8-0bfe0dac3d79",
                             Name = "Coordinator",
                             NormalizedName = "COORDINATOR"
                         },
                         new
                         {
-                            Id = "00165150-91c0-4c1d-997a-f1f958b00ef4",
+                            Id = "a5352efe-f602-46fa-8aa2-57116688d71a",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "1a703ccf-9d40-4969-891d-a39595ae5431",
+                            Id = "eaa1ad71-203e-487c-b9a6-3100379a643d",
                             Name = "SuperUser",
                             NormalizedName = "SUPERUSER"
                         });
@@ -313,8 +313,8 @@ namespace CMCS2.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "3e0d0c68-38ae-4f9c-9b66-605fa161f88e",
-                            RoleId = "1a703ccf-9d40-4969-891d-a39595ae5431"
+                            UserId = "635da86c-d2de-4e31-8e61-7317841f5c7f",
+                            RoleId = "eaa1ad71-203e-487c-b9a6-3100379a643d"
                         });
                 });
 

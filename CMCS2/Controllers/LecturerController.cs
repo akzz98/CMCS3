@@ -60,12 +60,14 @@ namespace CMCS2.Controllers
             // Check if the model state is valid after the validation checks
             if (ModelState.IsValid)
             {
+                double totalPayment = hoursWorked * hourlyRate;
                 var user = await _userManager.GetUserAsync(User);
 
                 var claim = new Claim
                 {
                     HoursWorked = hoursWorked,
                     HourlyRate = hourlyRate,
+                   // TotalPayment = totalPayment,
                     Notes = notes,
                     Status = "Pending",
                     DateSubmitted = DateTime.Now,

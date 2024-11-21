@@ -4,19 +4,16 @@ using CMCS2.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace CMCS2.Migrations
+namespace CMCS3.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241018191345_intialAdd")]
-    partial class intialAdd
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,18 +97,18 @@ namespace CMCS2.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4ad4628d-c9cc-4434-b949-25de2fba5179",
+                            Id = "635da86c-d2de-4e31-8e61-7317841f5c7f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5edd2573-fc7d-458b-8f72-5a8cba3913a2",
+                            ConcurrencyStamp = "cee69810-01bd-4d0b-abad-c99c65f92ec4",
                             Email = "admin@yourapp.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Name = "Admin",
                             NormalizedEmail = "ADMIN@YOURAPP.COM",
                             NormalizedUserName = "ADMIN@YOURAPP.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAENg3y/TC42Jtbjobyo/sboNohIY/EU4u7unX+FirGxVfGwZ7gp3iebAfMDmEYDukAg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENOGdPWF9CSzotymdP+chzvqDdmrita0yj03pBmOWcBn74ipSLJh1oMi/CLfDLO7qw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "10b0d86f-c90e-48a1-b112-9b7117ab70f0",
+                            SecurityStamp = "de8e8470-1e87-45ab-9ef1-9839a63df9d6",
                             Surname = "User",
                             TwoFactorEnabled = false,
                             UserName = "admin@yourapp.com"
@@ -198,25 +195,25 @@ namespace CMCS2.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c1f81752-9514-486a-9d38-3c85a10450ad",
+                            Id = "27b52031-2e93-4f18-a2d5-a5bd1575131b",
                             Name = "Lecturer",
                             NormalizedName = "LECTURER"
                         },
                         new
                         {
-                            Id = "bb6be6a8-d80c-43e8-8e16-bcf056ccd112",
+                            Id = "07d9d6e7-ecd7-4b50-91c8-0bfe0dac3d79",
                             Name = "Coordinator",
                             NormalizedName = "COORDINATOR"
                         },
                         new
                         {
-                            Id = "e17f8afc-f7c2-45d1-a0b0-efd459d38071",
+                            Id = "a5352efe-f602-46fa-8aa2-57116688d71a",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "be94b311-840a-4f3f-b98b-a23ae068ec65",
+                            Id = "eaa1ad71-203e-487c-b9a6-3100379a643d",
                             Name = "SuperUser",
                             NormalizedName = "SUPERUSER"
                         });
@@ -313,8 +310,8 @@ namespace CMCS2.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "4ad4628d-c9cc-4434-b949-25de2fba5179",
-                            RoleId = "be94b311-840a-4f3f-b98b-a23ae068ec65"
+                            UserId = "635da86c-d2de-4e31-8e61-7317841f5c7f",
+                            RoleId = "eaa1ad71-203e-487c-b9a6-3100379a643d"
                         });
                 });
 
