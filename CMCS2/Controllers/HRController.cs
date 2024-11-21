@@ -20,6 +20,21 @@ namespace CMCS2.Controllers
             _userManager = userManager;
         }
 
+        public async Task<IActionResult> Index()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user != null)
+            {
+                ViewBag.UserName = user.Name;
+            }
+            else
+            {
+                ViewBag.UserName = "Manager";
+            }
+            return View();
+        }
+
+
         public ActionResult ViewApprovedClaims()
         {
             var approvedClaims = _context.Claims.Where(c => c.Status == "Approved").ToList();
@@ -28,7 +43,7 @@ namespace CMCS2.Controllers
 
         public IActionResult GenerateReport()
         {
-            // Logic to generate report using a reporting library
+            // Logic to generate report using ssrs
             // This could involve fetching data and passing it to a report generator
             return View();
         }

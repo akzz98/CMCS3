@@ -21,15 +21,8 @@
                     <tr>
                         <th>Claim ID</th>
                         <th>Lecturer Name</th>
-                        <th>Date Submited</th>
-                        <th>Hours Worked</th>
-                        <th>Hourly Rate</th>
-                        <th>Total Payment</th>
-                        <th>Notes</th>
-                        <th>Supporting Document</th>                    
-                        <th>Date Verified</th>
+                        <th>Total Payment</th>                  
                         <th>Verified By</th>
-                        <th>Status</th>
                         <th>Approved By</th>
                         <th>Date Approved</th>
                         <th>Action</th>
@@ -42,24 +35,8 @@
                         <tr>
                             <td>@claim.ClaimId</td>
                             <td>@claim.LecturerFullName</td>
-                            <td>@claim.DateSubmitted</td>
-                            <td>@claim.HoursWorked</td>
-                            <td>@claim.HourlyRate</td>
-                            <td>R @claim.TotalPayment</td>
-                            <td>@claim.Notes</td>
-                            <td>
-                                @if (!string.IsNullOrEmpty(claim.DocumentPath))
-                                {
-                                    <a href="@Url.Content(claim.DocumentPath)" target="_blank">View Document</a>
-                                }
-                                else
-                                {
-                                    <span>No document uploaded</span>
-                                }
-                            </td>                            
-                            <td>@claim.DateVerified</td>
+                            <td>R @claim.TotalPayment</td>                            
                             <td>@claim.CoordinatorFullName</td>
-                            <td>@claim.Status</td>
                             <td>@claim.ManagerFullName</td>
                             <td>@claim.DateApproved</td>
                             <td>
@@ -72,7 +49,7 @@
         }
     </div>
 
-    <a href="@Url.Action("TrackClaims", "Organization")" class="btn btn-primary mt-4">Back</a>
+    <a href="@Url.Action("Index", "HR")" class="btn btn-primary mt-4">Back</a>
 </div>
 
 <style>

@@ -8,13 +8,12 @@
         <h3>What would you like to do?</h3>
 
         <div class="btn-group" role="group" aria-label="HR actions">
-            <a href="@Url.Action("ViewUnapprovedClaims", "Coordinator")" class="btn btn-success">Generate Report</a>
-            <a href="@Url.Action("TrackClaims", "Coordinator")" class="btn btn-info">View Reports</a>
+            <a href="@Url.Action("ViewApprovedClaims", "HR")" class="btn btn-primary">View Approved Claims</a>
+            <a href="@Url.Action("GeneratedReports", "HR")" class="btn btn-success">Generated Reports</a>
         </div>
 
-
         <div class="mt-4">
-            <a href="@Url.Action("Index", "Home")" class="btn btn-primary back-btn">Back</a>
+            <a href="@Url.Action("Index", "Home")" class="btn btn-secondary back-btn">Back</a>
         </div>
     </div>
 </div>
