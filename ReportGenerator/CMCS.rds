@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="CMCS">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=(localdb)\mssqllocaldb;Initial Catalog=aspnet-CMCS2-061bebf6-35f9-428c-a0c9-5785b7841766;MultipleActiveResultSets=True</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>bb955e54-64db-4d52-ab73-d07295ea4317</DataSourceID>
+</RptDataSource>
