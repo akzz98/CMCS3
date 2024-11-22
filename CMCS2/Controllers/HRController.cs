@@ -3,7 +3,6 @@ using CMCS2.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Reporting.WebForms;
 
 namespace CMCS2.Controllers
 {
@@ -22,17 +21,9 @@ namespace CMCS2.Controllers
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(User);
-            if (user != null)
-            {
-                ViewBag.UserName = user.Name;
-            }
-            else
-            {
-                ViewBag.UserName = "Manager";
-            }
+            ViewBag.UserName = user?.Name ?? "HR";
             return View();
         }
-
 
         public ActionResult ViewApprovedClaims()
         {
@@ -40,20 +31,31 @@ namespace CMCS2.Controllers
             return View(approvedClaims);
         }
 
-        public ActionResult GenerateReport()
+        public IActionResult GenerateReport(int? claimId)
         {
-            var reportViewer = new ReportViewer
+            if (claimId.HasValue)
             {
-                ProcessingMode = ProcessingMode.Remote,
-            };
+                var claim = _context.Claims.FirstOrDefault(c => c.ClaimId == claimId);
+                if (claim == null) return NotFound("Claim not found.");
 
-            reportViewer.ServerReport.ReportServerUrl = new Uri("http://localhost/ReportServer");
-            reportViewer.ServerReport.ReportPath = "/YourReportFolder/YourReportName";
+                ViewBag.ReportServerUrl = "http://localhost/ReportServer";
+                ViewBag.ReportPath = "/Reports/HRReports/IndividualClaimReport";
+                ViewBag.ClaimId = claimId;
 
-            ViewBag.ReportViewer = reportViewer;
+                return View("IndividualReport");
+            }
 
-            return View();
+            ViewBag.ReportServerUrl = "http://localhost/ReportServer";
+            ViewBag.ReportPath = "/Reports/HRReports/ApprovedClaimsSummary";
+            return View("SummaryReport");
         }
 
+        public IActionResult GenerateAllReports()
+        {
+            ViewBag.ReportServerUrl = "http://localhost/ReportServer";
+            ViewBag.ReportPath = "/Reports/HRReports/ApprovedClaimsSummary";
+
+            return View("SummaryReport");
+        }
     }
 }

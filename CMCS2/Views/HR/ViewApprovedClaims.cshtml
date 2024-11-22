@@ -21,12 +21,11 @@
                     <tr>
                         <th>Claim ID</th>
                         <th>Lecturer Name</th>
-                        <th>Total Payment</th>                  
+                        <th>Total Payment</th>
                         <th>Verified By</th>
                         <th>Approved By</th>
                         <th>Date Approved</th>
                         <th>Action</th>
-
                     </tr>
                 </thead>
                 <tbody>
@@ -35,12 +34,12 @@
                         <tr>
                             <td>@claim.ClaimId</td>
                             <td>@claim.LecturerFullName</td>
-                            <td>R @claim.TotalPayment</td>                            
+                            <td>R @claim.TotalPayment</td>
                             <td>@claim.CoordinatorFullName</td>
                             <td>@claim.ManagerFullName</td>
-                            <td>@claim.DateApproved</td>
+                            <td>@claim.DateApproved.ToShortDateString()</td>
                             <td>
-                                <a href="@Url.Action("GenerateReport", "HR", new { claimId = claim.ClaimId })" class="btn btn-info">Generate Report</a>
+                                <a href="@Url.Action("GenerateReport", "HR", new { claimId = claim.ClaimId })" class="btn btn-info">Generate Individual Report</a>
                             </td>
                         </tr>
                     }
@@ -49,7 +48,9 @@
         }
     </div>
 
-    <a href="@Url.Action("Index", "HR")" class="btn btn-primary mt-4">Back</a>
+    <div class="mt-4">
+        <a href="@Url.Action("GenerateAllReports", "HR")" class="btn btn-primary">Generate Full Report</a>
+    </div>
 </div>
 
 <style>
@@ -59,7 +60,6 @@
         width: 100%;
         max-height: 500px;
         overflow-y: auto;
-
     }
 
     .table thead th {
