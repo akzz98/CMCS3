@@ -71,7 +71,7 @@ using (var scope = app.Services.CreateScope())
 
 async Task EnsureRolesAsync(RoleManager<IdentityRole> roleManager)
 {
-    string[] roleNames = { "Lecturer", "Coordinator", "Manager" };
+    string[] roleNames = { "Lecturer", "Coordinator", "Manager", "Hr" };
 
     foreach (var roleName in roleNames)
     {

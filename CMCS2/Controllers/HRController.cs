@@ -21,7 +21,14 @@ namespace CMCS2.Controllers
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(User);
-            ViewBag.UserName = user?.Name ?? "HR";
+            if (user != null)
+            {
+                ViewBag.UserName = user.Name;
+            }
+            else
+            {
+                ViewBag.UserName = "HR";
+            }
             return View();
         }
 

@@ -22,6 +22,7 @@ namespace CMCS2.Data
             var superUserRoleId = Guid.NewGuid().ToString();
             var lecturerRoleId = Guid.NewGuid().ToString();
             var coordinatorRoleId = Guid.NewGuid().ToString();
+            var hrRoleId = Guid.NewGuid().ToString();
             var managerRoleId = Guid.NewGuid().ToString();
 
             // Seed Roles with GUIDs
@@ -29,6 +30,7 @@ namespace CMCS2.Data
                 new IdentityRole { Id = lecturerRoleId, Name = "Lecturer", NormalizedName = "LECTURER" },
                 new IdentityRole { Id = coordinatorRoleId, Name = "Coordinator", NormalizedName = "COORDINATOR" },
                 new IdentityRole { Id = managerRoleId, Name = "Manager", NormalizedName = "MANAGER" },
+                new IdentityRole { Id = hrRoleId, Name = "HR", NormalizedName = "HR" },
                 new IdentityRole { Id = superUserRoleId, Name = "SuperUser", NormalizedName = "SUPERUSER" }
             );
 
