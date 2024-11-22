@@ -8,7 +8,8 @@
         <h3 class="text-white">Select one of the options to start:</h3>
 
         <div class="row">
-            <div class="col-md-4 d-flex justify-content-center">
+            <!-- Lecturer Card -->
+            <div class="col-md-3 d-flex justify-content-center">
                 <div class="card card-custom text-dark mb-3">
                     <div class="card-body">
                         <h4 class="card-title">Lecturer</h4>
@@ -18,8 +19,8 @@
                 </div>
             </div>
 
-            <!-- Coordinator card -->
-            <div class="col-md-4 d-flex justify-content-center">
+            <!-- Coordinator Card -->
+            <div class="col-md-3 d-flex justify-content-center">
                 <div class="card card-custom text-dark mb-3">
                     <div class="card-body">
                         <h4 class="card-title">Coordinator</h4>
@@ -29,12 +30,24 @@
                 </div>
             </div>
 
-            <div class="col-md-4 d-flex justify-content-center">
+            <!-- Management Card -->
+            <div class="col-md-3 d-flex justify-content-center">
                 <div class="card card-custom text-dark mb-3">
                     <div class="card-body">
                         <h4 class="card-title">Management</h4>
                         <p class="card-text">Manage lecturers' claims and approvals.</p>
                         <a href="@Url.Action("Index", "Organization")" class="btn btn-primary">Go to Organization</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HR Card -->
+            <div class="col-md-3 d-flex justify-content-center">
+                <div class="card card-custom text-dark mb-3">
+                    <div class="card-body">
+                        <h4 class="card-title">HR</h4>
+                        <p class="card-text">Review approved claims and generate reports.</p>
+                        <a href="@Url.Action("Index", "HR")" class="btn btn-primary">Go to HR</a>
                     </div>
                 </div>
             </div>
@@ -56,7 +69,7 @@
         }
 
     .card-title, .card-text {
-        color: #343a40; 
+        color: #343a40;
     }
 
     .row {
